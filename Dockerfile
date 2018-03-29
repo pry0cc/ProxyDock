@@ -1,18 +1,14 @@
-FROM ubuntu:trusty
+FROM alpine
 
 # Install packages
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get -y install supervisor git python openvpn iptables
+RUN apk add --no-cache supervisor python openvpn
+
 # Add image configuration and scripts
-
-ADD supervisord/supervisord-openvpn.conf /etc/supervisor/conf.d/supervisord-openvpn.conf
+ADD supervisord/* /etc/supervisor.d/
 ADD VPN /VPN
-ADD auth.txt /auth.txt
-ADD scripts/start_vpn.sh /start_vpn.sh
+ADD auth.txt /
+
+ADD scripts/* /
 RUN chmod 775 /start_vpn.sh
-
-ADD scripts/proxy.py /proxy.py
-ADD supervisord/supervisord-proxy.conf /etc/supervisor/conf.d/supervisord-proxy.conf
-
-EXPOSE 8080
+EXPOSE 1080
 CMD ["supervisord","-n"]
