@@ -1,3 +1,7 @@
 #!/bin/bash
 
-for d in $(docker ps | awk '{ print $14 }'); do docker stop $d; done
+# stops the containers
+for d in $(docker ps -a | awk '$2=="vpnproxy" { print $1 }'); do docker stop $d; done
+
+# removes the containers
+for d in $(docker ps -a | awk '$2=="vpnproxy" { print $1 }'); do docker rm $d; done
