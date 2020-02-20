@@ -5,6 +5,8 @@
 ## What is it
 ProxyDock is a Dockerfile and Bash script that converts your OpenVPN files (and potentially others) into local proxies, that can be easily coupled with proxychains to make for an awesome, quick, private botnet.
 
+Online information: https://0x00sec.org/t/create-your-own-private-botnet-with-proxydock/5917
+
 
 ## Why I made it
 I came up with the idea for this while attempting to make an automatic google dorker, you'll know if you make enough requests for google dorks, eventually Google return 403's with a funky captcha, not very helpful for automatic dorking at all.
